@@ -26,16 +26,13 @@ module Padrino
         @root = options[:root]
         url   =  options[:url] || 'assets'
         @matcher = /^\/#{url}\/*/
-        @environment = ::Sprockets::Environment.new(@root) do |env|
-        end
+        @environment = ::Sprockets::Environment.new(@root)
         @environment.append_path 'assets/javascripts'
         @environment.append_path 'assets/stylesheets'
         @environment.append_path 'assets/images'
       end
       def call(env)
-        path = env["PATH_INFO"]
-        logger.debug { "path:#{path} url:#{@url}" }
-        return @app.call(env) unless @matcher =~ path
+        return @app.call(env) unless @matcher =~ env["PATH_INFO"]
         env['PATH_INFO'].sub!(@matcher,'')
         @environment.call(env)
       end
