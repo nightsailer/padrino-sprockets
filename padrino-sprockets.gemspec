@@ -1,4 +1,4 @@
-require File.expand_path("./lib/padrino/sprockets-version.rb", __FILE__)
+require File.expand_path("../lib/padrino/sprockets-version.rb", __FILE__)
 
 Gem::Specification.new do |gem|
   gem.name = "padrino-sprockets"
