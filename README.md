@@ -1,4 +1,4 @@
-= Padrino::Sprockets: Play padrion with Sprockets
+# Padrino::Sprockets: Integrate Sprockets with Padrion
 
 # Installation #
 
@@ -35,9 +35,9 @@ Now, you can access the asset follow:
     
 More document about sprockets, please check [Sprockets](https://github.com/sstephenson/sprockets/)
 
-# Helpers #
+# Helpers Usage #
  
- sprockets
+## sprockets
      :root =>  'asset root' # default is app.root
      :url => 'assets'  # default map url,location, default is 'assets'
 
