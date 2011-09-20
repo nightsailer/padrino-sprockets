@@ -1,4 +1,4 @@
-# Padrino::Sprockets: Integrate Sprockets with Padrion
+# Padrino::Sprockets: Integrate Sprockets with Padrino
 
 # Installation #
 
