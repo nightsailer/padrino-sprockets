@@ -1,4 +1,4 @@
-# Padrino::Sprockets: Integrate Sprockets with Padrion
+# Padrino::Sprockets: Integrate Sprockets with Padrino
 
 # Installation #
 
@@ -8,24 +8,24 @@ Install from RubyGems:
 
 Or include it in your project's `Gemfile` with Bundler:
 
-    gem 'padrino-sprockets'
+    gem 'padrino-sprockets', :require => "padrino/sprockets"
 
 # Usage #
 
-Your assets place under these path:
+Place your assets under these paths:
     
     app/assets/javascripts
     app/assets/images
     app/assets/stylesheets
     
-regsiter sprockets in your application:
+Regsiter sprockets in your application:
 
     class Redstore < Padrino::Application
       register Padrino::Sprockets
       sprockets  # :url => 'assets', :root => app.root
     end
 
-Now, you can access the asset follow:
+Now you can access the assets as follows:
 
     #  visit /assets/application.js
     will find assets under these paths:
@@ -33,12 +33,12 @@ Now, you can access the asset follow:
       => app/assets/javascripts/application.js.coffee
        => app/assets/javascripts/application.js.erb
     
-More document about sprockets, please check [Sprockets](https://github.com/sstephenson/sprockets/)
+For more documentation about sprockets, please check [Sprockets](https://github.com/sstephenson/sprockets/)
 
 # Helpers Usage #
  
 ## sprockets
      :root =>  'asset root' # default is app.root
-     :url => 'assets'  # default map url,location, default is 'assets'
+     :url => 'assets'  # default map url, location, default is 'assets'
 
      
