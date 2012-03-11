@@ -1,5 +1,6 @@
 # encoding: utf-8
 require "sprockets/environment"
+require "sprockets/version"
 module Padrino
   module Sprockets
     class << self
