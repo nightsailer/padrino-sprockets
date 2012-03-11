@@ -12,8 +12,9 @@ module Padrino
         def sprockets(options={})
           url   = options[:url] || 'assets'
           _root = options[:root] || root
+          paths = options[:paths] || []
           set :sprockets_url, url
-          use Padrino::Sprockets::App,:root => _root,:url => url
+          use Padrino::Sprockets::App,:root => _root,:url => url, :paths => paths
         end
       end
       def self.included(base)
@@ -30,6 +31,9 @@ module Padrino
         @environment.append_path 'assets/javascripts'
         @environment.append_path 'assets/stylesheets'
         @environment.append_path 'assets/images'
+        options[:paths].each do |sprocket_path|
+          @environment.append_path sprocket_path
+        end
       end
       def call(env)
         return @app.call(env) unless @matcher =~ env["PATH_INFO"]
