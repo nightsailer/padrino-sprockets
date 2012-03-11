@@ -30,6 +30,11 @@ module Padrino
         @environment.append_path 'assets/javascripts'
         @environment.append_path 'assets/stylesheets'
         @environment.append_path 'assets/images'
+        if @app.settings.sprockets_paths
+          @app.settings.sprocket_paths.each do |sprocket_path|
+            @environment.append_path sprocket_path
+          end
+        end
       end
       def call(env)
         return @app.call(env) unless @matcher =~ env["PATH_INFO"]
