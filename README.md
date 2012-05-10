@@ -33,6 +33,19 @@ Now you can access the assets as follows:
       => app/assets/javascripts/application.js.coffee
        => app/assets/javascripts/application.js.erb
     
+To minify javascripts in production do the following:
+    
+In your Gemfile:
+    
+    gem 'jsmin'
+
+In your app:
+
+    class Redstore < Padrino::Application
+      register Padrino::Sprockets
+      sprockets :minify => (Padrino.env == :production)
+    end
+
 For more documentation about sprockets, please check [Sprockets](https://github.com/sstephenson/sprockets/)
 
 # Helpers Usage #
