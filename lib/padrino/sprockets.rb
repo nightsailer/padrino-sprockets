@@ -1,5 +1,18 @@
 # encoding: utf-8
 require "sprockets/environment"
+require "tilt"
+
+module Sprockets
+  class JSMinifier < Tilt::Template
+    def prepare
+    end
+
+    def evaluate(context, locals, &block)
+      JSMin.minify(data)
+    end
+  end
+end
+
 module Padrino
   module Sprockets
     class << self
@@ -30,6 +43,11 @@ module Padrino
         @environment.append_path 'assets/javascripts'
         @environment.append_path 'assets/stylesheets'
         @environment.append_path 'assets/images'
+        if options[:minify]
+          if defined?(JSMin)
+            @environment.register_postprocessor "application/javascript", ::Sprockets::JSMinifier
+          end
+        end
       end
       def call(env)
         return @app.call(env) unless @matcher =~ env["PATH_INFO"]
