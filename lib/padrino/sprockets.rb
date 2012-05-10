@@ -45,9 +45,9 @@ module Padrino
         @environment.append_path 'assets/stylesheets'
         @environment.append_path 'assets/images'
         if options[:minify]
-          if defined?(JSMin)
+          #if defined?(JSMin)
             @environment.register_postprocessor "application/javascript", ::Sprockets::JSMinifier
-          end
+          #end
         end
         options[:paths].each do |sprocket_path|
           @environment.append_path sprocket_path
