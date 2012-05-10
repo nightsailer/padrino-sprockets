@@ -25,8 +25,9 @@ module Padrino
         def sprockets(options={})
           url   = options[:url] || 'assets'
           _root = options[:root] || root
+          paths = options[:paths] || []
           set :sprockets_url, url
-          use Padrino::Sprockets::App,:root => _root,:url => url
+          use Padrino::Sprockets::App,:root => _root,:url => url, :paths => paths
         end
       end
       def self.included(base)
@@ -47,6 +48,9 @@ module Padrino
           if defined?(JSMin)
             @environment.register_postprocessor "application/javascript", ::Sprockets::JSMinifier
           end
+        end
+        options[:paths].each do |sprocket_path|
+          @environment.append_path sprocket_path
         end
       end
       def call(env)
