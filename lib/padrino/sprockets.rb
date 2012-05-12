@@ -1,5 +1,18 @@
 # encoding: utf-8
 require "sprockets/environment"
+require "tilt"
+
+module Sprockets
+  class JSMinifier < Tilt::Template
+    def prepare
+    end
+
+    def evaluate(context, locals, &block)
+      JSMin.minify(data)
+    end
+  end
+end
+
 module Padrino
   module Sprockets
     class << self
@@ -14,7 +27,10 @@ module Padrino
           _root = options[:root] || root
           paths = options[:paths] || []
           set :sprockets_url, url
-          use Padrino::Sprockets::App,:root => _root,:url => url, :paths => paths
+          options[:root] = _root
+          options[:url] = url
+          options[:paths] = paths
+          use Padrino::Sprockets::App, options
         end
       end
       def self.included(base)
@@ -31,6 +47,13 @@ module Padrino
         @environment.append_path 'assets/javascripts'
         @environment.append_path 'assets/stylesheets'
         @environment.append_path 'assets/images'
+        if options[:minify]
+          if defined?(JSMin)
+            @environment.register_postprocessor "application/javascript", ::Sprockets::JSMinifier
+          else
+            puts "Add jsmin to your Gemfile to enable minification"
+          end
+        end
         options[:paths].each do |sprocket_path|
           @environment.append_path sprocket_path
         end
