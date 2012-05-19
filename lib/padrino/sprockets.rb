@@ -1,5 +1,5 @@
 # encoding: utf-8
-require "sprockets/environment"
+require "sprockets"
 require "tilt"
 
 module Sprockets
