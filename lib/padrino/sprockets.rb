@@ -36,6 +36,16 @@ module Padrino
       def self.included(base)
         base.extend         ClassMethods
       end
+      module AssetTagHelpers
+        # Change the folders to /assets/
+        def asset_folder_name(kind)
+          case kind
+          when :css then 'assets'
+          when :js  then 'assets'
+          else kind.to_s
+          end
+        end
+      end # AssetTagHelpers
     end #Helpers
     class App
       def initialize(app, options={})
