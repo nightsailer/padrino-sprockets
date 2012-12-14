@@ -46,7 +46,7 @@ module Padrino
           end
         end
       end # AssetTagHelpers
-    end #Helpers
+    end # Helpers
     class App
       def initialize(app, options={})
         @app = app
@@ -74,5 +74,5 @@ module Padrino
         @environment.call(env)
       end
     end
-  end #Sprockets
-end #Padrino
+  end # Sprockets
+end # Padrino
