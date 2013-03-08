@@ -38,8 +38,8 @@ To minify javascripts in production do the following:
 In your Gemfile:
 
     gem 'jsmin'
-    # or
-    gem 'YUI'
+    # enable css compression
+    gem 'yui-compressor'
 
 In your app:
 
