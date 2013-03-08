@@ -64,6 +64,11 @@ module Padrino
         @environment.append_path 'assets/images'
 
         if minify
+          if defined?(YUI)
+            @environment.css_compressor = YUI::CssCompressor.new
+          else
+            puts "Add yui-compressor to your Gemfile to enable css compression"
+          end
           if defined?(JSMin)
             @environment.register_postprocessor "application/javascript", ::Sprockets::JSMinifier
           else
