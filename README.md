@@ -38,6 +38,8 @@ To minify javascripts in production do the following:
 In your Gemfile:
 
     gem 'jsmin'
+    # or
+    gem 'YUI'
 
 In your app:
 
@@ -53,5 +55,15 @@ For more documentation about sprockets, please check [Sprockets](https://github.
 ## sprockets
      :root =>  'asset root' # default is app.root
      :url => 'assets'  # default map url, location, default is 'assets'
+
+# Contributors
+
+* @matthias-guenther
+* @swistak
+* @dommmel
+* @charlesvallieres
+* @jfcixmedia
+* @stefl
+* @mikesten
 
 
