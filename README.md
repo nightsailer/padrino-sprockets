@@ -36,8 +36,8 @@ Now you can access the assets as follows:
 To minify javascripts in production do the following:
 
 In your Gemfile:
-
-    gem 'jsmin'
+    # enable js minification
+    gem 'uglifier'
     # enable css compression
     gem 'yui-compressor'
 
