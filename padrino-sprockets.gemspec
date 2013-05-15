@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require File.expand_path("../lib/padrino/sprockets-version.rb", __FILE__)
 
 Gem::Specification.new do |gem|
@@ -5,8 +6,8 @@ Gem::Specification.new do |gem|
   gem.version = Padrino::Sprockets::VERSION
   gem.description = "Padrino with Sprockets"
   gem.summary = gem.description
-  gem.authors = ["Night Sailer"]
-  gem.email = ["nightsailer@gmail.com"]
+  gem.authors = ["Night Sailer, Matthias Günther"]
+  gem.email = ["nightsailer@gmail.com, matthias.guenther@wikimatze.de"]
   gem.date = Time.now.strftime '%Y-%m-%d'
   gem.homepage = "https://github.com/nightsailer/padrino-sprockets"
   gem.require_paths = ["lib"]
