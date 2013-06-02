@@ -10,6 +10,7 @@ Gem::Specification.new do |gem|
   gem.email = ["nightsailer@gmail.com, matthias.guenther@wikimatze.de"]
   gem.date = Time.now.strftime '%Y-%m-%d'
   gem.homepage = "https://github.com/nightsailer/padrino-sprockets"
+  gem.licenses = ['MIT']
   gem.require_paths = ["lib"]
   gem.files = [
     'lib/padrino/sprockets-version.rb',
