@@ -1,6 +1,6 @@
-# Padrino::Sprockets: Integrate Sprockets with Padrino
+# Padrino::Sprockets
 
-# Installation #
+## Installation
 
 Install from RubyGems:
 
@@ -8,9 +8,11 @@ Install from RubyGems:
 
 Or include it in your project's `Gemfile` with Bundler:
 
+```ruby
     gem 'padrino-sprockets', :require => "padrino/sprockets"
+```
 
-# Usage #
+## Usage
 
 Place your assets under these paths:
 
@@ -20,10 +22,12 @@ Place your assets under these paths:
 
 Register sprockets in your application:
 
+```ruby
     class Redstore < Padrino::Application
       register Padrino::Sprockets
       sprockets  # :url => 'assets', :root => app.root
     end
+```
 
 Now you can access the assets as follows:
 
@@ -36,34 +40,40 @@ Now you can access the assets as follows:
 To minify javascripts in production do the following:
 
 In your Gemfile:
+
+```ruby
     # enable js minification
     gem 'uglifier'
     # enable css compression
     gem 'yui-compressor'
+```
 
 In your app:
 
+```ruby
     class Redstore < Padrino::Application
       register Padrino::Sprockets
       sprockets :minify => (Padrino.env == :production)
     end
+```
 
 For more documentation about sprockets, please check [Sprockets](https://github.com/sstephenson/sprockets/)
 
-# Helpers Usage #
+## Helpers Usage
 
-## sprockets
+### sprockets
+
+```ruby
      :root =>  'asset root' # default is app.root
      :url => 'assets'  # default map url, location, default is 'assets'
+```
 
-# Contributors
+## Contributors
 
-* @matthias-guenther
-* @swistak
-* @dommmel
-* @charlesvallieres
-* @jfcixmedia
-* @stefl
-* @mikesten
-
-
+* [@matthias-guenther](https://github.com/matthias-guenther)
+* [@swistak](https://github.com/swistak)
+* [@dommmel](https://github.com/dommmel)
+* [@charlesvallieres](https://github.com/charlesvallieres)
+* [@jfcixmedia](https://github.com/jfcixmedia)
+* [@stefl](https://github.com/stefl)
+* [@mikesten](https://github.com/mikesten)
