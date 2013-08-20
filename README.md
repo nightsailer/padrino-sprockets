@@ -1,60 +1,64 @@
 # Padrino::Sprockets
 
+Integrate Sprockets with Padrino, enabling processing and compression of javascript, css and image assets.
+
 ## Installation
 
 Install from RubyGems:
 
-    $ gem install padrino-sprockets
+```sh
+$ gem install padrino-sprockets
+```
 
 Or include it in your project's `Gemfile` with Bundler:
 
 ```ruby
-    gem 'padrino-sprockets', :require => "padrino/sprockets"
+gem 'padrino-sprockets', :require => "padrino/sprockets"
 ```
 
 ## Usage
 
 Place your assets under these paths:
 
-    app/assets/javascripts
-    app/assets/images
-    app/assets/stylesheets
+```
+app/assets/javascripts
+app/assets/images
+app/assets/stylesheets
+```
 
 Register sprockets in your application:
 
 ```ruby
-    class Redstore < Padrino::Application
-      register Padrino::Sprockets
-      sprockets  # :url => 'assets', :root => app.root
-    end
+class Redstore < Padrino::Application
+  register Padrino::Sprockets
+  sprockets  # :url => 'assets', :root => app.root
+end
 ```
 
-Now you can access the assets as follows:
+Now when requesting a path like `/assets/application.js` it will look for a source file in one of these locations :
 
-    #  visit /assets/application.js
-    will find assets under these paths:
-     => app/assets/javascripts/application.js
-      => app/assets/javascripts/application.js.coffee
-       => app/assets/javascripts/application.js.erb
+* `app/assets/javascripts/application.js`
+* `app/assets/javascripts/application.js.coffee`
+* `app/assets/javascripts/application.js.erb`
 
 To minify javascripts in production do the following:
 
 In your Gemfile:
 
 ```ruby
-    # enable js minification
-    gem 'uglifier'
-    # enable css compression
-    gem 'yui-compressor'
+# enable js minification
+gem 'uglifier'
+# enable css compression
+gem 'yui-compressor'
 ```
 
 In your app:
 
 ```ruby
-    class Redstore < Padrino::Application
-      register Padrino::Sprockets
-      sprockets :minify => (Padrino.env == :production)
-    end
+class Redstore < Padrino::Application
+  register Padrino::Sprockets
+  sprockets :minify => (Padrino.env == :production)
+end
 ```
 
 For more documentation about sprockets, please check [Sprockets](https://github.com/sstephenson/sprockets/)
@@ -64,8 +68,8 @@ For more documentation about sprockets, please check [Sprockets](https://github.
 ### sprockets
 
 ```ruby
-     :root =>  'asset root' # default is app.root
-     :url => 'assets'  # default map url, location, default is 'assets'
+:root =>  'asset root' # default is app.root
+:url => 'assets'  # default map url, location, default is 'assets'
 ```
 
 ## Contributors
