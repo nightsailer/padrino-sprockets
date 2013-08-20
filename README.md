@@ -1,6 +1,6 @@
 # Padrino::Sprockets
 
-Integrate Sprockets with Padrino, enabling processing and compression of javascript, css and image assets.
+Sprockets, also known as "the asset pipeline", is a system for pre-processing, compressing and serving up of javascript, css and image assets. `Padrino::Sprockets` provides integration with the Padrino web framework.
 
 ## Installation
 
@@ -61,7 +61,7 @@ class Redstore < Padrino::Application
 end
 ```
 
-For more documentation about sprockets, please check [Sprockets](https://github.com/sstephenson/sprockets/)
+For more documentation about sprockets, have a look at the [Sprockets](https://github.com/sstephenson/sprockets/) gem.
 
 ## Helpers Usage
 
