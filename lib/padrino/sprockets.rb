@@ -47,7 +47,7 @@ module Padrino
     end #Helpers
 
     class App
-      attr_reader :environment
+      attr_reader :assets
 
       def initialize(app, options={})
         @app = app
@@ -58,33 +58,33 @@ module Padrino
       end
 
       def setup_environment(minify=false, extra_paths=[])
-        @environment = ::Sprockets::Environment.new(@root)
-        @environment.append_path 'assets/javascripts'
-        @environment.append_path 'assets/stylesheets'
-        @environment.append_path 'assets/images'
+        @assets = ::Sprockets::Environment.new(@root)
+        @assets.append_path 'assets/javascripts'
+        @assets.append_path 'assets/stylesheets'
+        @assets.append_path 'assets/images'
 
         if minify
           if defined?(YUI)
-            @environment.css_compressor = YUI::CssCompressor.new
+            @assets.css_compressor = YUI::CssCompressor.new
           else
             puts "Add yui-compressor to your Gemfile to enable css compression"
           end
           if defined?(Uglifier)
-            @environment.register_postprocessor "application/javascript", ::Sprockets::JSMinifier
+            @assets.register_postprocessor "application/javascript", ::Sprockets::JSMinifier
           else
             puts "Add uglifier to your Gemfile to enable js minification"
           end
         end
 
         extra_paths.each do |sprocket_path|
-          @environment.append_path sprocket_path
+          @assets.append_path sprocket_path
         end
       end
 
       def call(env)
         if @matcher =~ env["PATH_INFO"]
           env['PATH_INFO'].sub!(@matcher,'')
-          @environment.call(env)
+          @assets.call(env)
         else
           @app.call(env)
         end
