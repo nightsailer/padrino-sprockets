@@ -54,29 +54,29 @@ module Padrino
         @root = options[:root]
         url   =  options[:url] || 'assets'
         @matcher = /^\/#{url}\/*/
-        setup_environment(options[:minify], options[:paths] || [])
+        setup_environment(options[:minify],options)
       end
 
-      def setup_environment(minify=false, extra_paths=[])
+      def setup_environment(minify=false, options={})
         @environment = ::Sprockets::Environment.new(@root)
         @environment.append_path 'assets/javascripts'
         @environment.append_path 'assets/stylesheets'
         @environment.append_path 'assets/images'
 
         if minify
-          if defined?(YUI)
-            @environment.css_compressor = YUI::CssCompressor.new
+          if css_compressor = (options[:css_compressor] || YUI::CssCompressor.new)
+            @environment.css_compressor = css_compressor
           else
-            puts "Add yui-compressor to your Gemfile to enable css compression"
+            puts "Add yui-compressor to your Gemfile or specify :css_compressor for sprockets to enable css compression"
           end
-          if defined?(Uglifier)
-            @environment.register_postprocessor "application/javascript", ::Sprockets::JSMinifier
+          if js_compressor  = (options[:js_compressor]  || ::Sprockets::JSMinifier)
+            @environment.register_postprocessor "application/javascript", js_compressor
           else
-            puts "Add uglifier to your Gemfile to enable js minification"
+            puts "Add uglifier to your Gemfile or specify :js_compressor for sprockets to enable js minification"
           end
         end
 
-        extra_paths.each do |sprocket_path|
+        options[:paths].each do |sprocket_path|
           @environment.append_path sprocket_path
         end
       end
