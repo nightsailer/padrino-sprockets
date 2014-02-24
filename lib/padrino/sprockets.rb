@@ -17,7 +17,7 @@ module Padrino
   module Sprockets
     module Helpers
       module ClassMethods
-        def sprockets(options={})
+        def sprockets(options={},&block)
           url   = options[:url] || 'assets'
           _root = options[:root] || root
           paths = options[:paths] || []
@@ -25,7 +25,7 @@ module Padrino
           options[:root] = _root
           options[:url] = url
           options[:paths] = paths
-          use Padrino::Sprockets::App, options
+          use Padrino::Sprockets::App, options, &block
         end
       end
 
@@ -49,15 +49,15 @@ module Padrino
     class App
       attr_reader :environment
 
-      def initialize(app, options={})
+      def initialize(app, options={},&block)
         @app = app
         @root = options[:root]
         url   =  options[:url] || 'assets'
         @matcher = /^\/#{url}\/*/
-        setup_environment(options[:minify],options)
+        setup_environment(options[:minify],options,&block)
       end
 
-      def setup_environment(minify=false, options={})
+      def setup_environment(minify=false, options={},&block)
         @environment = ::Sprockets::Environment.new(@root)
         @environment.append_path 'assets/javascripts'
         @environment.append_path 'assets/stylesheets'
@@ -79,6 +79,9 @@ module Padrino
         options[:paths].each do |sprocket_path|
           @environment.append_path sprocket_path
         end
+
+        block.call @environment if block
+
       end
 
       def call(env)
