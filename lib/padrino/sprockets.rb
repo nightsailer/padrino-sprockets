@@ -33,8 +33,9 @@ module Padrino
         # Change the folders to /assets/
         def asset_folder_name(kind)
           case kind
-          when :css then 'assets'
-          when :js  then 'assets'
+          when :css    then 'assets'
+          when :js     then 'assets'
+          when :images then 'assets'
           else kind.to_s
           end
         end
